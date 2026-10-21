@@ -1,6 +1,6 @@
 
 
-const creatures = [
+export const creatures = [
   {
     id: "#001",
     name: "Bulbizarre",

@@ -10,6 +10,12 @@
 // 1. AFFICHAGE
 // Supprimez les cartes écrites à la main dans index.html et
 // construisez la grille à partir du tableau `creatures`.
+   
+
+
+
+
+
 // -------------------------------------------------------------
 
 
