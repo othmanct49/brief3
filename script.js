@@ -10,7 +10,34 @@
 // 1. AFFICHAGE
 // Supprimez les cartes écrites à la main dans index.html et
 // construisez la grille à partir du tableau `creatures`.
-   
+  import {creatures} from './data.js'
+   let grid = document.getElementById('grid')
+
+
+ 
+  
+
+   creatures.forEach(cart => { 
+    
+  
+
+ 
+   grid.insertAdjacentHTML('beforeend' ,`  <article class="flex flex-col gap-3 rounded-card bg-white  hover:-translate-y-4 hover:shadow-lg transition-all duration-300  p-3 pb-4">
+          
+          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light">
+          <img src="${cart.image}" width="140px" class="  hover:-translate-y-2 hover:scale-200 mx-auto  transition-transform duration-300  " > 
+
+            <span class="absolute left-3 top-2 font-mono text-sm text-muted">${cart.id}</span>
+          </div>
+          <div class="flex items-center justify-between gap-2">
+            <h3 class="font-display text-xl font-semibold">${cart.name}</h3>
+            <span class="rounded-full bg-brand-light px-3 py-1 text-sm font-bold text-ink">${cart.type}</span>
+          </div>
+          <p class="text-sm text-muted">${cart.level} ·${cart.stats.hp + cart.stats.attack + cart.stats.defence } </p>
+          <button type="button" class="btn-outline">Ajouter à l'équipe</button>
+        </article> ` ) });
+
+
 
 
 
