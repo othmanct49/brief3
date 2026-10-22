@@ -7,7 +7,7 @@ module.exports = {
       // TODO (Partie 1) : remplacez ces valeurs par les couleurs et les polices de votre univers.
     colors: {
         brand: {
-          DEFAULT: "#D97706", // أصفر خردلي/برتقالي دافئ ومطفي (Amber)
+          DEFAULT: "#D97706", 
           dark: "#B45309",         
           light: "#FEF3C7",   
         },

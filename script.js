@@ -15,14 +15,13 @@
 
 
  
-  
+
 
    creatures.forEach(cart => { 
-    
-  
 
  
-   grid.insertAdjacentHTML('beforeend' ,`  <article class="flex flex-col gap-3 rounded-card bg-white  hover:-translate-y-4 hover:shadow-lg transition-all duration-300  p-3 pb-4">
+ 
+   grid.insertAdjacentHTML('beforeend' ,`  <article id="${cart.id}"  class=" select  flex flex-col gap-3 rounded-card bg-white  hover:-translate-y-4 hover:shadow-lg transition-all duration-300  p-3 pb-4">
           
           <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light">
           <img src="${cart.image}" width="140px" class="  hover:-translate-y-2 hover:scale-200 mx-auto  transition-transform duration-300  " > 
@@ -37,6 +36,11 @@
           <button type="button" class="btn-outline">Ajouter à l'équipe</button>
         </article> ` ) });
 
+ 
+
+    
+
+
 
 
 
@@ -44,12 +48,25 @@
 
 
 // -------------------------------------------------------------
-
+    
 
 // -------------------------------------------------------------
 // 2. DÉTAIL
-// Un clic sur une carte ouvre le panneau de détail :
-// image, description, et statistiques affichées en barres.
+  // const cart= document.querySelectorAll('.select');
+  // cart.addEventlistener("click"; get_cart ) ; 
+ grid.addEventListener('click', (event) => {
+       let clicked = event.target.closed('.select')
+       if (clicked) {
+       const id_card_select = clicked.getAttribute('id')
+       }
+ }
+ 
+
+)
+     
+
+  
+
 // -------------------------------------------------------------
 
 
