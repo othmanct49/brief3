@@ -55,19 +55,20 @@
 // -------------------------------------------------------------
 // 2. DÉTAIL
   // const cart= document.querySelectorAll('.select');
-  // cart.addEventlistener("click"; get_cart ) ; 
+  // cart.addEventlistener("click"; get_cart ) ;
+  let details = document.getElementById('detail') 
  grid.addEventListener('click', (event) => {
        let clicked = event.target.closest('.select_card')
        if (clicked) {
        const id_card_select = clicked.getAttribute('id')
        console.log (id_card_select)
       
-      let details = document.getElementById('detail')
+      
 
    
        details.innerHTML = `<div class="flex items-center justify-between">
             <span class="font-mono text-sm text-muted">${creatures[id_card_select].id} · Détail</span>
-            <button type="button" aria-label="Fermer le détail" class="btn-outline w-11 px-0">✕</button>
+            <button  type="button" aria-label="Fermer le détail" class="close_bot btn-outline w-11 px-0">✕</button>
           </div>
           <div class="flex h-48 items-center justify-center rounded-2xl bg-brand-light">
             <img src="${creatures[id_card_select].image}" width="140px" class="  hover:-translate-y-2 hover:scale-200 mx-auto  transition-transform duration-300  " > 
@@ -81,7 +82,7 @@
             <div class="grid grid-cols-[80px_1fr_40px] items-center gap-2">
             <span class="font-bold">PV</span>
             <div class="h-3  w-full  rounded-full bg-ground">
-              <span class="block h-3  rounded-full bg-brand" style="width:${creatures[id_card_select].stats.hp}% " ></span>
+              <span class="block h-3  rounded-full bg-brand" style="width:${creatures[id_card_select].stats.hp}%" ></span>
             </div>
             <span class="text-right font-mono">${creatures[id_card_select].stats.hp}</span>
             </div>
@@ -89,6 +90,7 @@
             <div class="grid grid-cols-[80px_1fr_40px] items-center gap-2"><span class="font-bold">Défense</span><span class="h-3 rounded-full bg-ground"><span class="block h-3  rounded-full bg-brand"style="width:${creatures[id_card_select].stats.defence}% " ></span></span><span class="text-right font-mono">${creatures[id_card_select].stats.defence}</span></div>
           </div>
           <button type="button" class="btn-primary">Ajouter à l'équipe</button>` }
+
 
  
  
@@ -100,7 +102,13 @@
 
 
 )
-     
+   details.addEventListener('click' , (event)=>{
+   let close = event.target.closest('.close_bot')
+   if (close){
+    details.innerHTML=`      <p class="font-display font-extrabold mx-auto text-2xl">chose card</p>`
+   }
+ 
+ } )
 
   
 
