@@ -166,12 +166,10 @@
          const select_type = event.target.innerHTML.toLowerCase()
          const clickd_button = event.target.closest('button')
          const remove_style_button = type.querySelectorAll('button')
-           if (clickd_button){
-           
-           }else{
-             return ;
+           if (!clickd_button){
+           return ;
            }
-         console.log(clickd_button)
+  
          grid.innerHTML ="";
          if (select_type !='tous'){
          let index_cart_by_type = creatures.filter (cart => cart.type.toLowerCase().includes (select_type))
@@ -217,6 +215,71 @@
 // Validez chaque champ du formulaire avec une expression régulière
 // (voir le tableau du brief). Affichez le message d'erreur sous le
 // champ, et n'ajoutez jamais une créature invalide.
+   const get_creer_cart = document.querySelector("#create")
+   const get_form= get_creer_cart.querySelector("#creature-form")
+   const regix = { 
+      id: /^\x23[0-9]{3}$/ ,
+      name:/^[a-zA-Z0-9]+$/ ,
+      level: /^[a-zA-Z0-9 ]+$/ ,
+      stat1: /^[0-9]{1,3}$/ ,
+      stat2: /^[0-9]{1,3}$/ ,
+      stat3: /^[0-9]{1,3}$/ ,
+      image: /^https?:\/\/.+\.png$/,
+      description : /^.{10,200}$/ 
+
+    } 
+    let new_data = 
+      {
+     
+  };
+   let check = false
+    
+   let get_creer_input = get_form.addEventListener('input', (event)=>{
+   
+    const get_input = event.target.name  
+    const get_input_value = event.target.value
+    console.log (get_input)
+    if (get_input != "type"){
+    const get_regix = regix[get_input]
+     check =  get_regix.test(get_input_value)
+    console.log(check)
+    }else{check = true}
+    if (check == true){
+        new_data[get_input] = get_input_value ; 
+    }
+    if ( new_data.id && new_data.name && new_data.type && new_data.level && new_data.stat1 && new_data.stat2 && new_data.stat3 && new_data.image && new_data.description){
+      let final_cart_data = {
+        id: new_data.id ,
+        name:new_data.name,
+        type:new_data.type,
+        level:new_data.level ,
+        stats:{ hp: new_data.stat1 , attack: new_data.stat2 , defence: new_data.stat3 },
+        image: new_data.image,
+        description: new_data.description
+
+
+      }
+      creatures.push(final_cart_data)
+      Affichez()
+    }
+
+     
+
+
+
+
+    
+
+
+
+   }
+     
+  )
+   
+
+
+
+
 // -------------------------------------------------------------
 
 
