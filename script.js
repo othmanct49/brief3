@@ -10,18 +10,19 @@
 // 1. AFFICHAGE
 // Supprimez les cartes écrites à la main dans index.html et
 // construisez la grille à partir du tableau `creatures`.
-  import {creatures} from './data.js'
-   let grid = document.getElementById('grid')
- ;
-
  
+import { creatures } from './data.js'
+let grid = document.getElementById('grid')
+  ;
 
-  function Affichez (){
-   creatures.forEach(cart => { 
 
- 
- 
-   grid.insertAdjacentHTML('beforeend' ,`  <article   class="select_card  flex flex-col gap-3 rounded-card bg-white  hover:-translate-y-4 hover:shadow-lg transition-all duration-300  p-3 pb-4">
+
+function Affichez() {
+  creatures.forEach(cart => {
+
+
+
+    grid.insertAdjacentHTML('beforeend', `  <article   class="select_card  flex flex-col gap-3 rounded-card bg-white  hover:-translate-y-4 hover:shadow-lg transition-all duration-300  p-3 pb-4">
           
           <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light">
           <img src="${cart.image}" width="140px" class="  hover:-translate-y-2 hover:scale-200 mx-auto  transition-transform duration-300  " > 
@@ -32,16 +33,17 @@
             <h3 class="font-display text-xl font-semibold">${cart.name}</h3>
             <span class="fend_type rounded-full bg-brand-light px-3 py-1 text-sm font-bold text-ink">${cart.type}</span>
           </div>
-          <p class="text-sm text-muted">${cart.level} ·${cart.stats.hp + cart.stats.attack + cart.stats.defence } </p>
+          <p class="text-sm text-muted">${cart.level} ·${Number(cart.stats.hp) + Number(cart.stats.attack) +Number( cart.stats.defence)} </p>
           <button type="button" class="btn-outline">Ajouter à l'équipe</button>
-        </article> ` ) 
- 
-      });}
-      Affichez () ;
+        </article> ` )
 
- 
+  });
+}
+Affichez();
 
-    
+
+
+
 
 
 
@@ -51,25 +53,25 @@
 
 
 // -------------------------------------------------------------
-    
+
 
 // -------------------------------------------------------------
 // 2. DÉTAIL
-  // const cart= document.querySelectorAll('.select');
-  // cart.addEventlistener("click"; get_cart ) ;
-  let details = document.getElementById('detail') 
- grid.addEventListener('click', (event) => {
-       let clicked = event.target.closest('.select_card')
-       if (clicked) {
-       const card_select = clicked.querySelector('.find_cart')
-       const id_card_select = card_select.innerHTML
-       console.log (id_card_select)
-       const index_card_select = creatures.findIndex(element => element.id == id_card_select )
-      
-      
+// const cart= document.querySelectorAll('.select');
+// cart.addEventlistener("click"; get_cart ) ;
+let details = document.getElementById('detail')
+grid.addEventListener('click', (event) => {
+  let clicked = event.target.closest('.select_card')
+  if (clicked) {
+    const card_select = clicked.querySelector('.find_cart')
+    const id_card_select = card_select.innerHTML
+    console.log(id_card_select)
+    const index_card_select = creatures.findIndex(element => element.id == id_card_select)
 
-   
-       details.innerHTML = `<div class="flex items-center justify-between">
+
+
+
+    details.innerHTML = `<div class="flex items-center justify-between">
             <span class="font-mono text-sm text-muted">${creatures[index_card_select].id} · Détail</span>
             <button  type="button" aria-label="Fermer le détail" class="close_bot btn-outline w-11 px-0">✕</button>
           </div>
@@ -95,25 +97,25 @@
           <button type="button" class="btn-primary">Ajouter à l'équipe</button>` }
 
 
- 
- 
- 
- 
- 
- 
-      }
+
+
+
+
+
+
+}
 
 
 )
-   details.addEventListener('click' , (event)=>{
-   let close = event.target.closest('.close_bot')
-   if (close){
-    details.innerHTML=`      <p class="font-display font-extrabold mx-auto text-2xl">chose card</p>`
-   }
- 
- } )
+details.addEventListener('click', (event) => {
+  let close = event.target.closest('.close_bot')
+  if (close) {
+    details.innerHTML = `      <p class="font-display font-extrabold mx-auto text-2xl">chose card</p>`
+  }
 
-  
+})
+
+
 
 // -------------------------------------------------------------
 
@@ -122,15 +124,15 @@
 // 3. RECHERCHE
 // La liste se met à jour pendant la saisie d'un nom
 // (sans tenir compte des majuscules).
-  let search = document.getElementById('search');
+let search = document.getElementById('search');
 
-  let input = search.addEventListener('input', (event)=>{
-    let input_search = event.target.value.toLowerCase();
-        grid.innerHTML= " "
-        let card_recherche = creatures.filter (arg => arg.name.toLowerCase().includes(input_search))
-       
-       card_recherche.forEach(cart => {
-        grid.insertAdjacentHTML('beforeend', `  <article   class="select_card  flex flex-col gap-3 rounded-card bg-white  hover:-translate-y-4 hover:shadow-lg transition-all duration-300  p-3 pb-4">
+let input = search.addEventListener('input', (event) => {
+  let input_search = event.target.value.toLowerCase();
+  grid.innerHTML = " "
+  let card_recherche = creatures.filter(arg => arg.name.toLowerCase().includes(input_search))
+
+  card_recherche.forEach(cart => {
+    grid.insertAdjacentHTML('beforeend', `  <article   class="select_card  flex flex-col gap-3 rounded-card bg-white  hover:-translate-y-4 hover:shadow-lg transition-all duration-300  p-3 pb-4">
           
           <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light">
           <img src="${cart.image}" width="140px" class="  hover:-translate-y-2 hover:scale-200 mx-auto  transition-transform duration-300  " > 
@@ -141,15 +143,15 @@
             <h3 class="font-display text-xl font-semibold">${cart.name}</h3>
             <span class="fend_type rounded-full bg-brand-light px-3 py-1 text-sm font-bold text-ink">${cart.type}</span>
           </div>
-          <p class="text-sm text-muted">${cart.level} ·${cart.stats.hp + cart.stats.attack + cart.stats.defence } </p>
+          <p class="text-sm text-muted">${cart.level} ·${cart.stats.hp + cart.stats.attack + cart.stats.defence} </p>
           <button type="button" class="btn-outline">Ajouter à l'équipe</button>
-        </article> ` ) 
-        
-   
-       })
-     })
+        </article> ` )
 
-  
+
+  })
+})
+
+
 
 
 
@@ -161,20 +163,20 @@
 // Les boutons de type n'affichent que les créatures de ce type ;
 // « Tous » réinitialise le filtre.
 // La recherche et le filtre fonctionnent ENSEMBLE.
-   const type = document.querySelector('#filters')
-   const click_type = type.addEventListener('click' , (event)=> {
-         const select_type = event.target.innerHTML.toLowerCase()
-         const clickd_button = event.target.closest('button')
-         const remove_style_button = type.querySelectorAll('button')
-           if (!clickd_button){
-           return ;
-           }
-  
-         grid.innerHTML ="";
-         if (select_type !='tous'){
-         let index_cart_by_type = creatures.filter (cart => cart.type.toLowerCase().includes (select_type))
-            index_cart_by_type.forEach(cart => {
-        grid.insertAdjacentHTML('beforeend', `  <article   class="select_card  flex flex-col gap-3 rounded-card bg-white  hover:-translate-y-4 hover:shadow-lg transition-all duration-300  p-3 pb-4">
+const type = document.querySelector('#filters')
+const click_type = type.addEventListener('click', (event) => {
+  const select_type = event.target.innerHTML.toLowerCase()
+  const clickd_button = event.target.closest('button')
+  const remove_style_button = type.querySelectorAll('button')
+  if (!clickd_button) {
+    return;
+  }
+
+  grid.innerHTML = "";
+  if (select_type != 'tous') {
+    let index_cart_by_type = creatures.filter(cart => cart.type.toLowerCase().includes(select_type))
+    index_cart_by_type.forEach(cart => {
+      grid.insertAdjacentHTML('beforeend', `  <article   class="select_card  flex flex-col gap-3 rounded-card bg-white  hover:-translate-y-4 hover:shadow-lg transition-all duration-300  p-3 pb-4">
           
           <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light">
           <img src="${cart.image}" width="140px" class="  hover:-translate-y-2 hover:scale-200 mx-auto  transition-transform duration-300  " > 
@@ -185,26 +187,27 @@
             <h3 class="font-display text-xl font-semibold">${cart.name}</h3>
             <span class="fend_type rounded-full bg-brand-light px-3 py-1 text-sm font-bold text-ink">${cart.type}</span>
           </div>
-          <p class="text-sm text-muted">${cart.level} ·${cart.stats.hp + cart.stats.attack + cart.stats.defence } </p>
+          <p class="text-sm text-muted">${cart.level} ·${cart.stats.hp + cart.stats.attack + cart.stats.defence} </p>
           <button type="button" class="btn-outline">Ajouter à l'équipe</button>
-        </article> ` ) })
-        
-         remove_style_button.forEach(remov => remov.classList.remove('text-white', 'border-ink' , 'bg-ink' ))
-         clickd_button.classList.add('text-white', 'border-ink' , 'bg-ink')
+        </article> ` )
+    })
 
-        
-           
-       
-          
-        } else {
-          Affichez()
-         remove_style_button.forEach(remov => remov.classList.remove('text-white', 'border-ink' , 'bg-ink' ))
-         clickd_button.classList.add('text-white', 'border-ink' , 'bg-ink')
-        }
-         
+    remove_style_button.forEach(remov => remov.classList.remove('text-white', 'border-ink', 'bg-ink'))
+    clickd_button.classList.add('text-white', 'border-ink', 'bg-ink')
 
-   })
-         
+
+
+
+
+  } else {
+    Affichez()
+    remove_style_button.forEach(remov => remov.classList.remove('text-white', 'border-ink', 'bg-ink'))
+    clickd_button.classList.add('text-white', 'border-ink', 'bg-ink')
+  }
+
+
+})
+
 
 
 // -------------------------------------------------------------
@@ -215,67 +218,229 @@
 // Validez chaque champ du formulaire avec une expression régulière
 // (voir le tableau du brief). Affichez le message d'erreur sous le
 // champ, et n'ajoutez jamais une créature invalide.
-   const get_creer_cart = document.querySelector("#create")
-   const get_form= get_creer_cart.querySelector("#creature-form")
-   const regix = { 
-      id: /^\x23[0-9]{3}$/ ,
-      name:/^[a-zA-Z0-9]+$/ ,
-      level: /^[a-zA-Z0-9 ]+$/ ,
-      stat1: /^[0-9]{1,3}$/ ,
-      stat2: /^[0-9]{1,3}$/ ,
-      stat3: /^[0-9]{1,3}$/ ,
-      image: /^https?:\/\/.+\.png$/,
-      description : /^.{10,200}$/ 
+//  const get_creer_cart = document.querySelector("#create")
+//  const get_form= get_creer_cart.querySelector("#creature-form")
+//  const regix = { 
+//     id: /^\x23[0-9]{3}$/ ,
+//     name:/^[a-zA-Z0-9]+$/ ,
+//     level: /^[a-zA-Z0-9 ]+$/ ,
+//     stat1: /^[0-9]{1,3}$/ ,
+//     stat2: /^[0-9]{1,3}$/ ,
+//     stat3: /^[0-9]{1,3}$/ ,
+//     image: /^https?:\/\/.+\.png$/,
+//     description : /^.{10,200}$/ 
 
-    } 
-    let new_data = 
-      {
-     
-  };
-   let check = false
-    
-   let get_creer_input = get_form.addEventListener('input', (event)=>{
-   
-    const get_input = event.target.name  
-    const get_input_value = event.target.value
-    console.log (get_input)
-    if (get_input != "type"){
-    const get_regix = regix[get_input]
-     check =  get_regix.test(get_input_value)
-    console.log(check)
-    }else{check = true}
-    if (check == true){
-        new_data[get_input] = get_input_value ; 
-    }
-    if ( new_data.id && new_data.name && new_data.type && new_data.level && new_data.stat1 && new_data.stat2 && new_data.stat3 && new_data.image && new_data.description){
-      let final_cart_data = {
-        id: new_data.id ,
-        name:new_data.name,
-        type:new_data.type,
-        level:new_data.level ,
-        stats:{ hp: new_data.stat1 , attack: new_data.stat2 , defence: new_data.stat3 },
-        image: new_data.image,
-        description: new_data.description
+//   } 
+//   let new_data = 
+//     {
 
+// };
+//  let check = false ;
 
-      }
-      creatures.push(final_cart_data)
-      Affichez()
-    }
+//  let get_creer_input = get_form.addEventListener('input', (event)=>{
 
-     
+//       const get_input = event.target.name  
+//       const get_input_value = event.target.value
+let id_check = false;
+let name_check = false;
+let level_check = false;
+let stat1_check = false;
+let stat2_check = false;
+let stat3_check = false;
+let image_check = false;
+let description_check = false;
 
 
 
-
+const get_form = document.querySelector('#creature-form');
+const listener = get_form.addEventListener('input', (event) => {
+  const get_input_value = event.target.value
+  const get_input_name = event.target.name
+   let arry_id = []; 
+  creatures.forEach(idtcheck => {
+     arry_id.push(idtcheck.id)
+   } )
+  
+  if (get_input_name == "id" && !arry_id.includes(get_input_value) ) {
+    let regix = /^\x23[0-9]{3}$/
+      id_check =     regix.test(get_input_value)
+     console.log(id_check)
     
 
+  }else if (get_input_name== "name"){
+  let regixn = /^[a-zA-Z0-9]+$/ ;
+    name_check = regixn.test(get_input_value)
+    console.log(name_check)
 
 
+
+  }  else if (get_input_name== "level"){
+    let regixl = /^[a-zA-Z0-9 ]+$/
+     level_check = regixl.test(get_input_value) 
+     console.log(level_check)
+    
+  }else if (get_input_name == "stat1"){
+    let regixs1 = /^[0-9]{1,3}$/ 
+    stat1_check = regixs1.test(get_input_value)
+     console.log(stat1_check)
+   } 
+  else if (get_input_name == "stat2"){
+    let regixs2 = /^[0-9]{1,3}$/ 
+     stat2_check = regixs2.test(get_input_value)
+      console.log(stat2_check)
+   }  else if (get_input_name == "stat3"){
+    let regixs3 = /^[0-9]{1,3}$/ 
+     stat3_check = regixs3.test(get_input_value)
+       console.log(stat3_check)
+   }  else if (get_input_name == "image"){
+    let regixim =  /^https?:\/\/.+\.png$/ ; 
+      image_check = regixim.test(get_input_value)
+          console.log(image_check)
+    
+   }else if (get_input_name == "description"){
+    let regixdes =  /^.{10,200}$/  ; 
+     description_check = regixdes.test(get_input_value)
+       console.log(description_check)
    }
+   const submitbouton = get_form.querySelector("#submit")
+   if ( id_check && name_check  && level_check && stat1_check  && stat2_check && stat3_check && description_check  ){
+       
+        submitbouton.removeAttribute ("disabled")
+         }else {
+        submitbouton.setAttribute("disabled","")
+   }
+        })
+       const  listenerB =get_form.addEventListener("submit" , (event)=> {
+           event.preventDefault();
+          const nwe_data = new FormData (get_form) ; 
+          const data_add = {
+            id:nwe_data.get("id"), 
+            name:nwe_data.get("name"),
+            type:nwe_data.get("type"),
+            level:nwe_data.get("level"),
+            stats:{hp:nwe_data.get("stat1"), attack:nwe_data.get("stat2"),defence:nwe_data.get("stat3")},
+            image:nwe_data.get("image"),
+            description:nwe_data.get("description")
+
+          }
+          creatures.push(data_add)
+          grid.innerHTML =""
+          Affichez()
+          let id_check = false;
+         name_check = false;
+          level_check = false;
+         stat1_check = false;
+         stat2_check = false;
+         stat3_check = false;
+         image_check = false;
+         description_check = false;
+         get_form.reset( );
+
+          
+        })
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //  let get_creer_input = get_form.addEventListener('input', (event)=>{
+
+  //   const get_input = event.target.name  
+  //   const get_input_value = event.target.value
+  //   console.log (get_input)
+  //   if (get_input != "type"){
+  //   const get_regix = regix[get_input]
+  //    check =  get_regix.test(get_input_value)
+  //   console.log(check)
+  //   }else{check = true}
+  //   if (check == true){
+  //       new_data[get_input] = get_input_value ; 
+  //   }
+  //   if ( new_data.id && new_data.name && new_data.type && new_data.level && new_data.stat1 && new_data.stat2 && new_data.stat3 && new_data.image && new_data.description){
+  //     let final_cart_data = {
+  //       id: new_data.id ,
+  //       name:new_data.name,
+  //       type:new_data.type,
+  //       level:new_data.levdel ,
+  //       stats:{ hp: new_data.stat1 , attack: new_data.stat2 , defence: new_data.stat3 },
+  //       image: new_data.image,
+  //       description: new_data.description
+
+
+  //     }
+  //     creatures.push(final_cart_data)
+  //     Affichez()
+  //   }
+
      
-  )
-   
+
+
+
+
+    
+
+
+
+  //  }
+     
+  // )
+
 
 
 
