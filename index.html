@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mon Dex</title>
   <link rel="stylesheet" href="./dist/output.css">
 </head>
+
 <body class="bg-ground font-body text-ink">
 
   <!-- ===================== EN-TÊTE ===================== -->
@@ -13,7 +15,12 @@
     <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-5">
       <div class="flex items-center  gap-3">
         <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand">
-          <svg aria-hidden="true" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          <svg aria-hidden="true" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+            stroke-linecap="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
         </div>
         <div>
           <p class="font-display text-2xl font-extrabold leading-none">Mon Dex</p>
@@ -39,63 +46,47 @@
           <input id="search" type="search" placeholder="ex. Mossling" class="field font-normal">
         </label>
       </div>
-      <div id="filters" role="group" aria-label="Filtrer par type" class="flex h-11 flex-nowrap gap-2 lg:overflow-hidden  overflow-x-auto ">
-          <button type="button" class="chip bg-ink text-white border-ink shrink-0">Tous</button>
-          <button type="button" class="chip shrink-0">Feu</button>
-          <button type="button" class="chip shrink-0">Eau</button>
-          <button type="button" class="chip shrink-0">Plante</button>
-          <button type="button" class="chip shrink-0">Électrik</button>
-          <button type="button" class="chip shrink-0">Glace</button>
-          <button type="button" class="chip shrink-0">Ténèbres</button>
+      <div id="filters" role="group" aria-label="Filtrer par type"
+        class="flex h-11 flex-nowrap gap-2 lg:overflow-hidden  overflow-x-auto ">
+        <button type="button" class="chip bg-ink text-white border-ink shrink-0">Tous</button>
+        <button type="button" class="chip shrink-0">Feu</button>
+        <button type="button" class="chip shrink-0">Eau</button>
+        <button type="button" class="chip shrink-0">Plante</button>
+        <button type="button" class="chip shrink-0">Électrik</button>
+        <button type="button" class="chip shrink-0">Glace</button>
+        <button type="button" class="chip shrink-0">Ténèbres</button>
       </div>
     </section>
 
     <div class="flex flex-col lg:flex-row gap-8 items-start">
 
       <!-- ===================== GRILLE DES CRÉATURES ===================== -->
-      <section id="grid" aria-label="Créatures"  class=" grid min-w-80 lg:min-w-0 flex-1  items-center mx-auto grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gr gap-5">
-  
+      <section id="grid" aria-label="Créatures"
+        class=" grid min-w-80 lg:min-w-0 flex-1  items-center mx-auto grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gr gap-5">
+
       </section>
 
       <aside class="flex lg:w-[420px] mx-auto lg:shrink-0 flex-col gap-6">
 
         <!-- ===================== PANNEAU DE DÉTAIL ===================== -->
-        <section id="detail" aria-label="Détail de la créature" class="flex flex-col  gap-4 rounded-card border-2 border-ink bg-white p-6">
+        <section id="detail" aria-label="Détail de la créature"
+          class="flex flex-col  gap-4 rounded-card border-2 border-ink bg-white p-6">
           <p class="font-display font-extrabold mx-auto text-2xl">chose card</p>
         </section>
 
         <!-- ===================== MON ÉQUIPE (INCOMPLÈTE) ===================== -->
-      <section id="team" aria-label="Mon équipe" class="rounded-card bg-white p-6">
-          <h2 class="font-display text-2xl font-extrabold">Mon équipe 0 / 6 </h2>
-           <div class="grid mx-auto lg:grid-cols-3 gap-6 pt-6 grid-cols-2" > 
-          <div class=" w-[120px]   h-[70px] flex items-center bg-brand-light rounded-[20px]">
-       
-            <p class="mx-auto">+</p>
-          </div>
-            <div class=" w-[120px]   h-[70px]   flex items-center bg-brand-light rounded-[20px]">
-        
-               <p class="mx-auto">+</p>
-           </div>
-            <div class=" w-[120px]   h-[70px]   flex items-center bg-brand-light rounded-[20px]">
-               <p class="mx-auto">+</p>
-           </div>
-            <div class=" w-[120px]   h-[70px]  flex items-center  bg-brand-light rounded-[20px]">
-            <p class="mx-auto">+</p>
-           </div>
-            <div class=" w-[120px]   h-[70px]  flex items-center  bg-brand-light rounded-[20px]">
-             <p class="mx-auto">+</p>
-           </div>
-            <div class=" w-[120px]   h-[70px]  flex items-center bg-brand-light rounded-[20px]">
-             <p class="mx-auto">+</p>
-
-           </div>
-
-           </div>
-           <div >
+        <section id="team" aria-label="Mon équipe" class="flex flex-col bg-white p-6">
+          <h2 class="font-display text-2xl font-extrabold">Mon équipe <span id="team-count2" >0</span>  / 6 </h2>
+          <div id="team_aj" class="grid mx-auto lg:grid-cols-3 gap-6 pt-6 grid-cols-2">
             
-           </div>
+           
+
+          </div>
+          <div id="message">
+        
+          </div>
         </section>
-            </aside>
+      </aside>
     </div>
     <!-- ===================== FORMULAIRE DE CRÉATION ===================== -->
     <section id="create" aria-label="Nouvelle créature" class="flex flex-col gap-6 rounded-card bg-white p-8">
@@ -106,47 +97,53 @@
       <form id="creature-form" novalidate class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
         <label class="flex flex-col gap-1 text-sm font-bold">Numéro
           <input name="id" type="text" placeholder="#010" class="field font-normal">
-          <span class="error-message text-sm font-normal text-muted"></span>
+          <span class="error-message text-sm font-normal text-red-600"></span>
         </label>
         <label class="flex flex-col gap-1 text-sm font-bold">Nom
           <input name="name" type="text" placeholder="Nom de la créature" class="field font-normal">
-          <span class="error-message text-sm font-normal text-muted"></span>
+          <span class="error-message text-sm font-normal text-red-600"></span>
         </label>
         <label class="flex flex-col gap-1 text-sm font-bold">Type
           <select name="type" class="field font-normal">
             <option value="">Choisir un type</option>
-            <option>Feu</option><option>Eau</option><option>Plante</option>
-            <option>Électrik</option><option>Glace</option><option>Ténèbres</option>
+            <option>Feu</option>
+            <option>Eau</option>
+            <option>Plante</option>
+            <option>Électrik</option>
+            <option>Glace</option>
+            <option>Ténèbres</option>
           </select>
-          <span class="error-message text-sm font-normal text-muted"></span>
+          <span class="error-message text-sm font-normal text-red-600"></span>
         </label>
         <label class="flex flex-col gap-1 text-sm font-bold">Niveau
           <input name="level" type="text" placeholder="Base, Niveau 1…" class="field font-normal">
-          <span class="error-message text-sm font-normal text-muted"></span>
+          <span class="error-message text-sm font-normal text-red-600"></span>
         </label>
         <label class="flex flex-col gap-1 text-sm font-bold">Statistique 1
           <input name="stat1" type="text" placeholder="0 à 999" class="field font-normal">
-          <span class="error-message text-sm font-normal text-muted"></span>
+          <span class="error-message text-sm font-normal text-red-600"></span>
         </label>
         <label class="flex flex-col gap-1 text-sm font-bold">Statistique 2
           <input name="stat2" type="text" placeholder="0 à 999" class="field font-normal">
-          <span class="error-message text-sm font-normal text-muted"></span>
+          <span class="error-message text-sm font-normal text-red-600"></span>
         </label>
         <label class="flex flex-col gap-1 text-sm font-bold">Statistique 3
           <input name="stat3" type="text" placeholder="0 à 999" class="field font-normal">
-          <span class="error-message text-sm font-normal text-muted"></span>
+          <span class="error-message text-sm font-normal text-red-600"></span>
         </label>
         <label class="flex flex-col gap-1 text-sm font-bold">Lien de l'image
           <input name="image" type="text" placeholder="https://…/image.png" class="field font-normal">
-          <span class="error-message text-sm font-normal text-muted"></span>
+          <span class="error-message text-sm font-normal text-red-600"></span>
         </label>
         <label class="flex flex-col gap-1 text-sm font-bold md:col-span-2 lg:col-span-4">Description
-          <textarea name="description" rows="3" placeholder="10 à 200 caractères" class="rounded-xl border-2 border-line p-3 font-normal outline-none"></textarea>
-          <span class="error-message text-sm font-normal text-muted"></span>
+          <textarea name="description" rows="3" placeholder="10 à 200 caractères"
+            class="rounded-xl border-2 border-line p-3 font-normal outline-none"></textarea>
+          <span class="error-message text-sm font-normal text-red-600"></span>
         </label>
         <div class="flex flex-wrap justify-end gap-3 md:col-span-2 lg:col-span-4">
           <button type="reset" class="btn-outline px-6">Effacer</button>
-          <button id = "submit" disabled type="submit" class="btn-primary disabled:opacity-50 disabled:cursor-not-allowed">Ajouter la créature</button>
+          <button id="submit" disabled type="submit"
+            class="btn-primary disabled:opacity-50 disabled:cursor-not-allowed">Ajouter la créature</button>
         </div>
       </form>
     </section>
@@ -161,4 +158,5 @@
   <script type="module" src="./data.js"></script>
   <script type="module" src="./script.js"></script>
 </body>
+
 </html>

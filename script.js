@@ -34,7 +34,7 @@ function Affichez() {
             <span class="fend_type rounded-full bg-brand-light px-3 py-1 text-sm font-bold text-ink">${cart.type}</span>
           </div>
           <p class="text-sm text-muted">${cart.level} ·${Number(cart.stats.hp) + Number(cart.stats.attack) +Number( cart.stats.defence)} </p>
-          <button type="button" class="btn-outline">Ajouter à l'équipe</button>
+          <button id="ajouter" type="button" class="btn-outline">Ajouter à l'équipe</button>
         </article> ` )
 
   });
@@ -94,7 +94,7 @@ grid.addEventListener('click', (event) => {
             <div class="grid grid-cols-[80px_1fr_40px] items-center gap-2"><span class="font-bold">Attaque</span><span class="h-3 rounded-full bg-ground"><span class="block h-3  rounded-full bg-brand" style="width:${creatures[index_card_select].stats.attack}% " ></span></span><span class="text-right font-mono">${creatures[index_card_select].stats.attack} </span></div>
             <div class="grid grid-cols-[80px_1fr_40px] items-center gap-2"><span class="font-bold">Défense</span><span class="h-3 rounded-full bg-ground"><span class="block h-3  rounded-full bg-brand"style="width:${creatures[index_card_select].stats.defence}% " ></span></span><span class="text-right font-mono">${creatures[index_card_select].stats.defence}</span></div>
           </div>
-          <button type="button" class="btn-primary">Ajouter à l'équipe</button>` }
+          <button id="ajouter" data-id="${creatures[index_card_select].id}" ${ajout_list.some(element => element.id == creatures[index_card_select].id) ? 'disabled' : ''} type="button" class="btn-primary">Ajouter à l'équipe</button>` }
 
 
 
@@ -111,6 +111,14 @@ details.addEventListener('click', (event) => {
   let close = event.target.closest('.close_bot')
   if (close) {
     details.innerHTML = `      <p class="font-display font-extrabold mx-auto text-2xl">chose card</p>`
+  }
+  const ajout_detail = event.target.closest('#ajouter')
+  if (ajout_detail) {
+    grid.querySelectorAll('.select_card').forEach(card => {
+      if (card.querySelector('.find_cart').textContent == ajout_detail.dataset.id) {
+        card.querySelector('#ajouter').click()
+      }
+    })
   }
 
 })
@@ -144,7 +152,7 @@ let input = search.addEventListener('input', (event) => {
             <span class="fend_type rounded-full bg-brand-light px-3 py-1 text-sm font-bold text-ink">${cart.type}</span>
           </div>
           <p class="text-sm text-muted">${cart.level} ·${cart.stats.hp + cart.stats.attack + cart.stats.defence} </p>
-          <button type="button" class="btn-outline">Ajouter à l'équipe</button>
+          <button id="ajouter" type="button" class="btn-outline">Ajouter à l'équipe</button>
         </article> ` )
 
 
@@ -188,7 +196,7 @@ const click_type = type.addEventListener('click', (event) => {
             <span class="fend_type rounded-full bg-brand-light px-3 py-1 text-sm font-bold text-ink">${cart.type}</span>
           </div>
           <p class="text-sm text-muted">${cart.level} ·${cart.stats.hp + cart.stats.attack + cart.stats.defence} </p>
-          <button type="button" class="btn-outline">Ajouter à l'équipe</button>
+          <button id="ajouter" type="button" class="btn-outline">Ajouter à l'équipe</button>
         </article> ` )
     })
 
@@ -218,29 +226,7 @@ const click_type = type.addEventListener('click', (event) => {
 // Validez chaque champ du formulaire avec une expression régulière
 // (voir le tableau du brief). Affichez le message d'erreur sous le
 // champ, et n'ajoutez jamais une créature invalide.
-//  const get_creer_cart = document.querySelector("#create")
-//  const get_form= get_creer_cart.querySelector("#creature-form")
-//  const regix = { 
-//     id: /^\x23[0-9]{3}$/ ,
-//     name:/^[a-zA-Z0-9]+$/ ,
-//     level: /^[a-zA-Z0-9 ]+$/ ,
-//     stat1: /^[0-9]{1,3}$/ ,
-//     stat2: /^[0-9]{1,3}$/ ,
-//     stat3: /^[0-9]{1,3}$/ ,
-//     image: /^https?:\/\/.+\.png$/,
-//     description : /^.{10,200}$/ 
 
-//   } 
-//   let new_data = 
-//     {
-
-// };
-//  let check = false ;
-
-//  let get_creer_input = get_form.addEventListener('input', (event)=>{
-
-//       const get_input = event.target.name  
-//       const get_input_value = event.target.value
 let id_check = false;
 let name_check = false;
 let level_check = false;
@@ -302,6 +288,13 @@ const listener = get_form.addEventListener('input', (event) => {
      description_check = regixdes.test(get_input_value)
        console.log(description_check)
    }
+   const checks = { id: id_check, name: name_check, level: level_check, stat1: stat1_check, stat2: stat2_check, stat3: stat3_check, image: image_check, description: description_check }
+   const span_erreur = event.target.closest('label').querySelector('.error-message')
+   if (checks[get_input_name] == false) {
+     span_erreur.textContent = "Format incorrect"
+   } else {
+     span_erreur.textContent = ""
+   }
    const submitbouton = get_form.querySelector("#submit")
    if ( id_check && name_check  && level_check && stat1_check  && stat2_check && stat3_check && description_check  ){
        
@@ -338,112 +331,6 @@ const listener = get_form.addEventListener('input', (event) => {
 
           
         })
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //  let get_creer_input = get_form.addEventListener('input', (event)=>{
-
-  //   const get_input = event.target.name  
-  //   const get_input_value = event.target.value
-  //   console.log (get_input)
-  //   if (get_input != "type"){
-  //   const get_regix = regix[get_input]
-  //    check =  get_regix.test(get_input_value)
-  //   console.log(check)
-  //   }else{check = true}
-  //   if (check == true){
-  //       new_data[get_input] = get_input_value ; 
-  //   }
-  //   if ( new_data.id && new_data.name && new_data.type && new_data.level && new_data.stat1 && new_data.stat2 && new_data.stat3 && new_data.image && new_data.description){
-  //     let final_cart_data = {
-  //       id: new_data.id ,
-  //       name:new_data.name,
-  //       type:new_data.type,
-  //       level:new_data.levdel ,
-  //       stats:{ hp: new_data.stat1 , attack: new_data.stat2 , defence: new_data.stat3 },
-  //       image: new_data.image,
-  //       description: new_data.description
-
-
-  //     }
-  //     creatures.push(final_cart_data)
-  //     Affichez()
-  //   }
-
-     
-
-
-
-
-    
-
-
-
-  //  }
-     
-  // )
-
-
-
-
 
 // -------------------------------------------------------------
 
@@ -452,6 +339,97 @@ const listener = get_form.addEventListener('input', (event) => {
 // 6. MON ÉQUIPE
 // Boutons « Ajouter à l'équipe » et « Retirer », gérés avec UN SEUL
 // écouteur sur la grille et UN SEUL sur l'équipe (délégation).
+       let ajout_list= []
+    const ajout_listener = grid.addEventListener('click' , (event)=> {
+       const ajout_input = event.target.closest('#ajouter')
+       const cart_click = event.target.closest('.select_card')
+       const erreur_messag = document.querySelector('#message')
+       const get_team_div = document.getElementById('team_aj')
+       const find_id = cart_click.querySelector('.find_cart')
+       
+
+
+
+
+
+
+       
+          if (!ajout_input){return}
+        const get_id_aj =find_id.textContent
+         console.log(get_id_aj)
+       const get_index = creatures.findIndex(element => element.id == get_id_aj)
+      const   get_image_aj = creatures[get_index].image 
+      const get_name_aj = creatures[get_index].name
+       let data_object = {
+        id:get_id_aj,
+        image:get_image_aj,
+        name:get_name_aj
+       }
+       console.log(data_object)
+       
+        if (ajout_list.length <  6 && !ajout_list.some(element => element.image == get_image_aj) ){
+          ajout_list.push(data_object)
+          erreur_messag.innerHTML = ''
+          const get_count= document.getElementById('team-count')
+             get_count.textContent = `${ajout_list.length}`
+             const get_count2= document.getElementById('team-count2')
+            get_count2.textContent = `${ajout_list.length}`
+            ajout_input.setAttribute('disabled', '')
+            details.querySelector('#ajouter').setAttribute('disabled', '')
+           
+
+            get_team_div.innerHTML =""
+          ajout_list.forEach(element => {
+             get_team_div.insertAdjacentHTML('beforeend' , `<div class="relative w-[120px]   h-[70px] flex items-center bg-brand-light rounded-[20px]">
+               <img src="${element.image}" title="${element.name}" width="70" class="  hover:-translate-y-2 hover:scale-120 mx-auto  transition-transform duration-300" >
+               <button type="button" data-id="${element.id}" aria-label="Retirer ${element.name}" class="retirer absolute -right-2 -top-2 h-7 w-7 rounded-full border-2 border-ink bg-white text-xs font-bold focus-visible:outline focus-visible:outline-2">✕</button>
+            </div>`)
+
+          })
+        } else if (ajout_list.length == 6){
+          erreur_messag.innerHTML=''
+
+          erreur_messag.insertAdjacentHTML('beforeend', `         <p class="error-message text-sm font-normal text-red-600 ">team is full</p>`)
+        } 
+
+
+    })
+
+const get_team_div_r = document.getElementById('team_aj')
+const retirer_listener = get_team_div_r.addEventListener('click', (event) => {
+  const retirer_bouton = event.target.closest('.retirer')
+  if (!retirer_bouton) { return }
+  const id_retirer = retirer_bouton.dataset.id
+
+  ajout_list = ajout_list.filter(element => element.id != id_retirer)
+
+  document.getElementById('team-count').textContent = `${ajout_list.length}`
+  document.getElementById('team-count2').textContent = `${ajout_list.length}`
+  document.querySelector('#message').innerHTML = ''
+
+  get_team_div_r.innerHTML = ""
+  ajout_list.forEach(element => {
+    get_team_div_r.insertAdjacentHTML('beforeend', `<div class="relative w-[120px]   h-[70px] flex items-center bg-brand-light rounded-[20px]">
+               <img src="${element.image}" title="${element.name}" width="70" class="  hover:-translate-y-2 hover:scale-120 mx-auto  transition-transform duration-300" >
+               <button type="button" data-id="${element.id}" aria-label="Retirer ${element.name}" class="retirer absolute -right-2 -top-2 h-7 w-7 rounded-full border-2 border-ink bg-white text-xs font-bold focus-visible:outline focus-visible:outline-2">✕</button>
+            </div>`)
+  })
+
+  grid.querySelectorAll('.select_card').forEach(card => {
+    if (card.querySelector('.find_cart').textContent == id_retirer) {
+      card.querySelector('#ajouter').removeAttribute('disabled')
+    }
+  })
+
+  const bouton_detail = details.querySelector('#ajouter')
+  if (bouton_detail && bouton_detail.dataset.id == id_retirer) {
+    bouton_detail.removeAttribute('disabled')
+  }
+})
+
+
+
+
 // -------------------------------------------------------------
 
 
